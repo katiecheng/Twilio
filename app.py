@@ -50,9 +50,17 @@ def call():
 # Generate TwiML instructions for an outbound call
 @app.route('/hello')
 def hello():
+    # Endpoint that responds to an SMS
     response = twiml.Response()
-    response.say('Hello there! You have successfully configured a web hook.')
-    response.say('Good luck on your Twilio quest!', voice='woman')
+    response.say("Hey Linna, whats up. I'm the devil!")
+    response.say('raaaaaaah', voice='woman')
+    return Response(str(response), mimetype='text/xml')
+
+@app.route('/sms')
+def sms():
+    # Endpoint that responds to a voice call
+    response = twiml.Response()
+    response.sms('I just responded to a text message. Huzzah!')
     return Response(str(response), mimetype='text/xml')
 
 if __name__ == '__main__':
